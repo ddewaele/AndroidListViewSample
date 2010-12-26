@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TwoLineListItem xmlns:android="http://schemas.android.com/apk/res/android" 
-	android:background="#cccccc"
+	android:background="#ffffff"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:paddingTop="2dip"
@@ -19,7 +19,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/vw1"
-    android:gravity="left"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal">    
@@ -37,9 +36,12 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/vw2"
+    android:gravity="right"
+    android:background="#ffffff"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">    
+    android:paddingRight="10px"
+    android:orientation="vertical">    
     
     <TextView android:id="@+id/row_lastname"
     	android:textColor="#000000"
@@ -49,12 +51,23 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
     />
 
+    <TextView android:id="@+id/row_lastname2"
+    	android:textColor="#000000"
+    	android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="someText"
+    />
+
+
 </LinearLayout> 
 
 </LinearLayout>   
 
     <TextView android:id="@+id/row_info"
-    	android:textColor="#000000"	
+    	android:textColor="#cccccc"
+		android:textSize="10sp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/vw1"
