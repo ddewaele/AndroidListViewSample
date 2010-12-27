@@ -16,6 +16,8 @@ public class SimpleNestedListActivity extends ExpandableListActivity {
     private static final String FIRST_NAME = "row_firstname";
     private static final String IS_EVEN = "IS_EVEN";
 	private static final String INFO = "row_info";
+	private static final String PROJECT_DUEDATE = "row_project_duedate";
+	private static final String PROJECT_STARTDATE = "row_project_startdate";
     
     private ExpandableListAdapter mAdapter;
     
@@ -46,6 +48,8 @@ public class SimpleNestedListActivity extends ExpandableListActivity {
                 Map<String, String> curChildMap = new HashMap<String, String>();
                 children.add(curChildMap);
                 curChildMap.put(PROJECT_NAME, project.getName());
+                curChildMap.put(PROJECT_STARTDATE, Utils.getDateFormatted(project.getStartDate()));
+                curChildMap.put(PROJECT_DUEDATE, Utils.getDateFormatted(project.getDueDate()));
                 curChildMap.put(IS_EVEN, (j % 2 == 0) ? "This child is even" : "This child is odd");
                 j++;
 			}
@@ -64,8 +68,8 @@ public class SimpleNestedListActivity extends ExpandableListActivity {
                 new int[] { R.id.row_lastname, R.id.row_firstname,R.id.row_info},
                 employeeProjects,
                 R.layout.expandable_project_row,
-                new String[] { PROJECT_NAME },
-                new int[] { R.id.row_projectname }
+                new String[] { PROJECT_NAME,PROJECT_STARTDATE,PROJECT_DUEDATE },
+                new int[] { R.id.row_projectname,R.id.row_project_startdate,R.id.row_project_duedate }
                 );
         setListAdapter(mAdapter);
     }
