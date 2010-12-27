@@ -24,6 +24,12 @@
                   android:label="SimpleNestedListActivity">
         </activity>   
         
+        <activity android:name=".NestListActivityWithAdapter"
+                  android:label="NestListActivityWithAdapter">
+        </activity>   
+        
+        
+        
              
         
     </application>
