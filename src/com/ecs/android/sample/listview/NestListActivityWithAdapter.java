@@ -16,23 +16,22 @@
 
 package com.ecs.android.sample.listview;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import android.app.ExpandableListActivity;
+import android.content.Context;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 
 /**
  * Demonstrates expandable lists using a custom {@link ExpandableListAdapter}
@@ -47,7 +46,7 @@ public class NestListActivityWithAdapter extends ExpandableListActivity {
         super.onCreate(savedInstanceState);
 
         // Set up our adapter
-        mAdapter = new MyExpandableListAdapter();
+        mAdapter = new MyExpandableListAdapter(this);
         setListAdapter(mAdapter);
         //registerForContextMenu(getExpandableListView());
     }
@@ -85,6 +84,11 @@ public class NestListActivityWithAdapter extends ExpandableListActivity {
     public class MyExpandableListAdapter extends BaseExpandableListAdapter {
         
         List<Employee> employees = DataProvider.getInstance().getEmployees();
+		private Context context;
+        
+        public MyExpandableListAdapter(Context context) {
+			this.context=context;
+		}
         
         public Object getChild(int groupPosition, int childPosition) {
             return employees.get(groupPosition).getProjects().get(childPosition);
@@ -98,26 +102,29 @@ public class NestListActivityWithAdapter extends ExpandableListActivity {
             return employees.get(groupPosition).getProjects().size();
         }
 
-        public TextView getGenericView() {
-            // Layout parameters for the ExpandableListView
-            AbsListView.LayoutParams lp = new AbsListView.LayoutParams(
-                    ViewGroup.LayoutParams.FILL_PARENT, 64);
-
-            TextView textView = new TextView(NestListActivityWithAdapter.this);
-            textView.setLayoutParams(lp);
-            // Center the text vertically
-            textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-            // Set the text starting position
-            textView.setPadding(36, 0, 0, 0);
-            return textView;
-        }
-        
         public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
                 View convertView, ViewGroup parent) {
-            TextView textView = getGenericView();
-            Project project = (Project) getChild(groupPosition, childPosition);
-            textView.setText(project.getName());
-            return textView;
+        	
+        	Project project = (Project) getChild(groupPosition, childPosition);
+        	View v = convertView;
+            
+        	if (v == null) {
+                LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE); 
+                v = vi.inflate(R.layout.expandable_project_row, null);
+            }
+        	
+            ImageView check = (ImageView) v.findViewById(R.id.check);
+            
+            if (childPosition%2==0) {
+            	check.setImageResource(R.drawable.check_small);
+            } else {
+            	check.setImageResource(R.drawable.delete_small);
+            }
+        	
+        	TextView projectName = (TextView) v.findViewById(R.id.row_projectname);
+        	
+            projectName.setText(project.getName());
+            return v;
         }
 
         public Object getGroup(int groupPosition) {
@@ -135,10 +142,21 @@ public class NestListActivityWithAdapter extends ExpandableListActivity {
         public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
                 ViewGroup parent) {
             
-        	TextView textView = getGenericView();
         	Employee employee = (Employee) getGroup(groupPosition);
-            textView.setText(employee.getFirstname());
-            return textView;
+        	View v = convertView;
+            
+        	if (v == null) {
+                LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE); 
+                v = vi.inflate(R.layout.expandable_employee_row, null);
+            }
+        	
+            TextView firstName = (TextView) v.findViewById(R.id.row_firstname);
+            TextView lastName = (TextView) v.findViewById(R.id.row_lastname);
+            TextView info = (TextView) v.findViewById(R.id.row_info);
+            firstName.setText(employee.getFirstname());                            
+            lastName.setText(employee.getLastname());
+            info.setText(employee.getInfo());
+            return v;
         }
 
         public boolean isChildSelectable(int groupPosition, int childPosition) {
