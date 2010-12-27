@@ -32,6 +32,15 @@ public class AndroidListViewSample extends Activity {
 			public void onClick(View v) {
 				startActivity(new Intent().setClass(v.getContext(),SimpleNestedListActivity.class));
 			}
-		});  		
+		});  	
+		
+		Button btnNestedListViewAdapter = (Button) findViewById(R.id.btn_nested_listview_adapter);
+		btnNestedListViewAdapter.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				startActivity(new Intent().setClass(v.getContext(),NestListActivityWithAdapter.class));
+			}
+		});  	
+		
+		
     }
 }
