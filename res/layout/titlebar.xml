@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent">
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Stretched Text" />
+            
+    <ImageView
+        android:layout_width="48dip"
+        android:layout_height="48dip"
+        android:layout_margin="8dip"
+        android:src="@drawable/icon" />
+
+    <ImageView
+        android:layout_width="128dip"
+        android:layout_height="32dip"
+        android:layout_margin="16dip"
+        android:src="@drawable/icon" />
+
+</LinearLayout>

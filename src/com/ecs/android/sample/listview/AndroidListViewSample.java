@@ -10,6 +10,10 @@ public class AndroidListViewSample extends Activity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+//    	requestWindowFeature(Window.FEATURE_CUSTOM_TITLE); 
+//        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.titlebar);
+
+        
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
@@ -40,7 +44,6 @@ public class AndroidListViewSample extends Activity {
 				startActivity(new Intent().setClass(v.getContext(),NestListActivityWithAdapter.class));
 			}
 		});  	
-		
 		
     }
 }

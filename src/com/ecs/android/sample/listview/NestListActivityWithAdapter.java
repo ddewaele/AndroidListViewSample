@@ -122,8 +122,12 @@ public class NestListActivityWithAdapter extends ExpandableListActivity {
             }
         	
         	TextView projectName = (TextView) v.findViewById(R.id.row_projectname);
+        	TextView projectStartDate = (TextView) v.findViewById(R.id.row_project_startdate);
+        	TextView projectDueDate = (TextView) v.findViewById(R.id.row_project_duedate);
         	
             projectName.setText(project.getName());
+            projectStartDate.setText(Utils.getDateFormatted(project.getStartDate()));
+            projectDueDate.setText(Utils.getDateFormatted(project.getDueDate()));
             return v;
         }
 
@@ -153,9 +157,13 @@ public class NestListActivityWithAdapter extends ExpandableListActivity {
             TextView firstName = (TextView) v.findViewById(R.id.row_firstname);
             TextView lastName = (TextView) v.findViewById(R.id.row_lastname);
             TextView info = (TextView) v.findViewById(R.id.row_info);
+            TextView enrollment = (TextView) v.findViewById(R.id.row_enrollment);
+            TextView salary = (TextView) v.findViewById(R.id.row_salary);
             firstName.setText(employee.getFirstname());                            
             lastName.setText(employee.getLastname());
             info.setText(employee.getInfo());
+            salary.setText(String.valueOf(employee.getSalary()));
+            enrollment.setText(Utils.getDateFormatted(employee.getEnrollmentDate()));
             return v;
         }
 

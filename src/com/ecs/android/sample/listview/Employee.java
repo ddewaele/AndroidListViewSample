@@ -1,6 +1,7 @@
 package com.ecs.android.sample.listview;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Employee {
@@ -8,13 +9,18 @@ public class Employee {
 	private String firstname;
 	private String lastname;
 	private String info;
+	private double salary;
+	private Date enrollmentDate;
+	
 	private List<Project> projects = new ArrayList<Project>();
 	
-	public Employee(String firstname, String lastname,String info) {
+	public Employee(String firstname, String lastname,String info,double salary,Date enrollmentDate) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.info=info;
+		this.salary=salary;
+		this.enrollmentDate=enrollmentDate;
 	}
 	
 	public void addProject(Project project) {
@@ -48,6 +54,22 @@ public class Employee {
 	
 	public void setInfo(String info) {
 		this.info = info;
+	}
+	
+	public double getSalary() {
+		return salary;
+	}
+	
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+	
+	public Date getEnrollmentDate() {
+		return enrollmentDate;
+	}
+	
+	public void setEnrollmentDate(Date enrollmentDate) {
+		this.enrollmentDate = enrollmentDate;
 	}
 	
 }

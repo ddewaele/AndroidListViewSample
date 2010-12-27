@@ -20,7 +20,7 @@ public class DataProvider {
 	
 	private void initializeData() {
 		for (int i=1 ; i<=10 ; i++) {
-			Employee employee = new Employee("firstname " + i, "lastname " + i,"Some additional info on the employee " + i);
+			Employee employee = new Employee("firstname " + i, "lastname " + i,"Some additional info on the employee " + i,i*1000,new Date());
 			employees.add(employee);
 			for(int j=1 ; j<=5 ; j++) {
 				employee.addProject(new Project("Project " + i + "." + j,new Date(),new Date()));
