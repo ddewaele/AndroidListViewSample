@@ -5,11 +5,14 @@ import java.util.Date;
 public class Project {
 
 	private String name;
+	private Date startDate;
 	private Date dueDate;
 	
-	public Project(String name, Date dueDate) {
+	
+	public Project(String name, Date startDate, Date dueDate) {
 		super();
 		this.name = name;
+		this.startDate = startDate;
 		this.dueDate = dueDate;
 	}
 
@@ -24,6 +27,14 @@ public class Project {
 	}
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
+	}
+	
+	public Date getStartDate() {
+		return startDate;
+	}
+	
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 	
 }
