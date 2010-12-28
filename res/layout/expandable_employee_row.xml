@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 
+A simple layout that shows employee information.
+On the lefthand we'll display the lastname (bold) just above the firstname.
+On the righthand side, 
+ -->
 <TwoLineListItem xmlns:android="http://schemas.android.com/apk/res/android" 
 	android:background="#ffffff"
     android:layout_width="fill_parent"
@@ -9,21 +14,34 @@
     android:mode="twoLine"
 >
 
+	<!-- 
+	The first LinearLayout is used to defined the lefthand side where we display the lastname and firstname.
+	To embed the zone that will hold the lastname and firstname, we'll start with a horizontal orientation.
+	This top-level zone can have the full width of the screen (layout_width="fill_parent").
+	 -->
 	<LinearLayout
 	    xmlns:android="http://schemas.android.com/apk/res/android"
-	    android:id="@+id/vw1"
+	    android:id="@+id/top_level_layout"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:orientation="horizontal"> 
     
-    	<!--  Display the employee name -->
+    	<!--  
+    	Display the employee last name and firstname, vertically on the lefthand side. 
+    	Notice how the lastname and firstname are defined in a linearlayout with orientation="vertical".
+    	As this layout is embedded in a layout that has orientation="horizontal", we can add more linearLayout controls after this one
+    	to display additional information next to this one.
+		Notice also how we're using layout_width="wrap_content", to make sure that there is still space left for the LinearLayout we'll define 
+		after this one.
+    	-->
 		<LinearLayout
 		    xmlns:android="http://schemas.android.com/apk/res/android"
-		    android:id="@+id/vw1"
+		    android:id="@+id/layout_last_and_firstname"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:orientation="vertical">    
 
+			<!--  Nothing special here, a simple text view -->
 		    <TextView android:id="@+id/row_lastname"
 		    	android:textColor="#000000"
 		        android:layout_width="wrap_content"
@@ -31,24 +49,34 @@
 		    	android:textStyle="bold"
 		        android:textAppearance="?android:attr/textAppearanceSmall"/>
 		        
-
+			<!--  
+			Nothing special here, a simple text view 
+			Due to the fact that these 2 textfields are defined in a LinearLayout with orientation="vertical", the 2 textviews
+			will be placed underneath eachother.
+			-->
 		    <TextView android:id="@+id/row_firstname"
 		    	android:textColor="#000000"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:textAppearance="?android:attr/textAppearanceSmall"/>
-		        
-
-		        		        
     
 		</LinearLayout>
 
-		<!-- In the right hand side, display 2 additional fields (salary & enrollment). Align the vertically -->
+		<!-- 
+		On the right hand side of the previous zone, we display 2 additional fields (salary & enrollment). 
+		These 2 fields are again aligned vertically, hence the orientation="vertical".
+		Also notice how this layout has layout_width="fill_parent". This is required because we want to use the rest of the available space,
+		and make sure that the embedded TextView controls are moved as close to the right hand side as possible.
+		If we would have used layout_width="wrap_content", the textview controls wouldn't be placed at the most right hand side, but rather be attached
+		to the previous LinearLayout.
+		Notice how this layout has a gravity="right", to make sure that the controls nested in this layout are put on the right hand side of this LinearLayout.
+		Also notice the usa of the paddingRight="10px". This is to ensure that we still have some empty space on right hand side. The ListView
+		shows a thin scrollbar, and we don't want that getting the way of our text.
+		 -->
 		<LinearLayout
 		    xmlns:android="http://schemas.android.com/apk/res/android"
 		    android:id="@+id/vw2"
 		    android:gravity="right"
-		    android:background="#ffffff"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:paddingRight="10px"
@@ -58,26 +86,29 @@
 		    	android:textColor="#000000"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:textAppearance="?android:attr/textAppearanceSmall"
-		        android:text="someText"/>
+		        android:textAppearance="?android:attr/textAppearanceSmall"/>
 		
 		    <TextView android:id="@+id/row_salary"
 		    	android:textColor="#000000"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:textAppearance="?android:attr/textAppearanceSmall"
-		        android:text="someText"/>
+		        android:textAppearance="?android:attr/textAppearanceSmall"/>
 
 		</LinearLayout> 
 
-</LinearLayout>   
+	</LinearLayout>   
 
+	<!-- 
+	Underneath here, we'll display a single text field that will fill up the entire width of the screen.
+	Due to the layout_width="fill_parent" property, and the fact that no other components are defined anymore,
+	this text gets the full width of the screen.
+	 -->
     <TextView android:id="@+id/row_info"
     	android:textColor="#cccccc"
 		android:textSize="10sp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/vw1"
+        android:layout_below="@id/top_level_layout"
         android:layout_alignLeft="@android:id/text1"
         android:textAppearance="?android:attr/textAppearanceSmall"
     />
