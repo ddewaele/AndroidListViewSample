@@ -36,7 +36,7 @@ On the righthand side,
     	-->
 		<LinearLayout
 		    xmlns:android="http://schemas.android.com/apk/res/android"
-		    android:id="@+id/layout_last_and_firstname"
+		    android:id="@+id/layout_top_left"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:orientation="vertical">    
@@ -75,7 +75,7 @@ On the righthand side,
 		 -->
 		<LinearLayout
 		    xmlns:android="http://schemas.android.com/apk/res/android"
-		    android:id="@+id/vw2"
+		    android:id="@+id/layout_top_right"
 		    android:gravity="right"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"

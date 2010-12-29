@@ -27,6 +27,7 @@ public class DataProvider {
 			}
 		}
 	}
+
 	public List<Employee> getEmployees() {
 		return this.employees;
 	}

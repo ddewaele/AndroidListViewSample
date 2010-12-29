@@ -20,16 +20,14 @@ public class SimpleCollapseExpandListview extends ListActivity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        
-        // Use our own list adapter
-        setListAdapter(new SpeechListAdapter(this));
+        setListAdapter(new EmployeeListAdapter(this));
     }
         
     
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) 
     {    
-       ((SpeechListAdapter)getListAdapter()).toggle(position);
+       ((EmployeeListAdapter)getListAdapter()).toggle(position);
     }
     
     /**
@@ -37,7 +35,7 @@ public class SimpleCollapseExpandListview extends ListActivity
      * from arrays of speeches and text.
      *
      */
-    private class SpeechListAdapter extends BaseAdapter {
+    private class EmployeeListAdapter extends BaseAdapter {
     	
     	private String[] mEmployeeNames;
     	private String[] mEmployeeInfos;
@@ -45,7 +43,7 @@ public class SimpleCollapseExpandListview extends ListActivity
 		private LayoutInflater mInflater;
     	
     	
-        public SpeechListAdapter(Context context)
+        public EmployeeListAdapter(Context context)
         {
         	List<Employee> employees = DataProvider.getInstance().getEmployees();
         	List<String> employeeNames = new ArrayList<String>();
@@ -100,19 +98,16 @@ public class SimpleCollapseExpandListview extends ListActivity
          */
         public View getView(int position, View convertView, ViewGroup parent) {
         	
-        	
             if (null == convertView) {
             	convertView = mInflater.inflate(R.layout.row2, null);
             }
             
-            
-            TextView tv = (TextView) convertView.findViewById(R.id.row_employeename);
-            tv.setText(mEmployeeNames[position]);
-            
-            TextView tv2 = (TextView) convertView.findViewById(R.id.row_employeeinfo);
-            tv2.setText(mEmployeeInfos[position]);
-            
-            tv2.setVisibility(mExpanded[position] ? View.VISIBLE : View.GONE);
+            TextView employeeName = (TextView) convertView.findViewById(R.id.row_employeename);
+            TextView employeeInfo = (TextView) convertView.findViewById(R.id.row_employeeinfo);
+
+            employeeName.setText(mEmployeeNames[position]);
+            employeeInfo.setText(mEmployeeInfos[position]);
+            employeeInfo.setVisibility(mExpanded[position] ? View.VISIBLE : View.GONE);
             
             return convertView;
 

@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2007 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.ecs.android.sample.listview;
 
 import java.util.List;
@@ -34,21 +18,22 @@ import android.widget.Toast;
 import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 
 /**
- * Demonstrates expandable lists using a custom {@link ExpandableListAdapter}
+ * Sample app with an expandable list using a custom {@link ExpandableListAdapter}
  * from {@link BaseExpandableListAdapter}.
  */
-public class NestListActivityWithAdapter extends ExpandableListActivity {
+public class NestedListActivityWithCustomAdapter extends ExpandableListActivity {
 
-    ExpandableListAdapter mAdapter;
+    private ExpandableListAdapter mAdapter;
 
+    /**
+     * In the onCreate,we setup our custom ListAdapter that is responsible
+     * for rendering our expandable list. 
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Set up our adapter
         mAdapter = new MyExpandableListAdapter(this);
         setListAdapter(mAdapter);
-        //registerForContextMenu(getExpandableListView());
     }
 
 
@@ -143,6 +128,11 @@ public class NestListActivityWithAdapter extends ExpandableListActivity {
             return groupPosition;
         }
 
+        /**
+         * In the getGroupView, we'll return the expandable_employee_row view
+         * that is responsible for rendering an employee.
+         * We fetch the Employee from the getGroup method.
+         */
         public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
                 ViewGroup parent) {
             
